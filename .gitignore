@@ -1,0 +1,6 @@
+**/bin/
+**/obj/
+/Backend/My.Warehouse/.idea/*
+/Backend/My.Warehouse/.vs/*
+/Frontend/My.Warehouse/.idea/*
+/Frontend/My.Warehouse/.vs/*
