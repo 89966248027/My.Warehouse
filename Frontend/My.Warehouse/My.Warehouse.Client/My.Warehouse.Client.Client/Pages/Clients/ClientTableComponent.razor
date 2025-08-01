@@ -1,0 +1,28 @@
+@using AntDesign.TableModels
+@using My.Warehouse.Client.Client.Models.Clients
+
+<div>
+    <Table TItem="ClientData" DataSource="@Data" OnRowClick="@OnOpen" HidePagination>
+        <Column @bind-Field="@context.Name">
+            <a>@context.Name</a>
+        </Column>
+        <Column @bind-Field="@context.Address">
+            <a>@context.Address</a>
+        </Column>
+    </Table>
+</div>
+
+@code {
+
+    [Parameter]
+    public required IEnumerable<ClientData> Data { get; set; }
+
+    [Parameter]
+    public EventCallback<Guid?> Open { get; set; } = new EventCallback<Guid?>();
+
+    private async Task OnOpen(RowData<ClientData> row)
+    {
+        await Open.InvokeAsync(row.Data.Id);
+    }
+
+}

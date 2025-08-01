@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using My.Warehouse.Dal.Entities.Documents.Shipment;
 using My.Warehouse.Dal.Enums;
 
 namespace My.Warehouse.Dal.Entities.Dictionaries;
@@ -18,4 +19,6 @@ public sealed class ClientEntity
     public string Address { get; set; }
 
     public CommonStatus Status { get; set; }
+
+    public List<ShipmentDocumentEntity> ShipmentDocuments { get; set; }
 }

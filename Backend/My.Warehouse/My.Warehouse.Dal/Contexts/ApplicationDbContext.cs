@@ -63,5 +63,10 @@ public sealed class ApplicationDbContext : DbContext
             .Entity<ShipmentDocumentEntity>()
             .HasMany(x => x.ShipmentResources)
             .WithOne(x => x.ShipmentDocument);
+
+        builder
+            .Entity<ShipmentDocumentEntity>()
+            .HasOne(x => x.Client)
+            .WithMany(x => x.ShipmentDocuments);
     }
 }

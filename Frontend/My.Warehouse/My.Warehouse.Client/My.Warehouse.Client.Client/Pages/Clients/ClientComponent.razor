@@ -1,0 +1,41 @@
+@page "/clients"
+@inject HttpClient Http;
+@inject NavigationManager Navigation
+@rendermode InteractiveWebAssembly
+
+<div class="h-100 d-flex flex-column">
+    <div class="flex-grow-0">
+        <h2>Клиенты</h2>
+        <hr class="mb-4" />
+    </div>
+
+    <div class="flex-grow-0 pb-3 d-flex flex-row w-100 flex-wrap-reverse justify-content-between align-items-start">
+        <ButtonGroup Class="mb-auto pb-2">
+            @if (_showActive)
+            {
+                <Button Type="@ButtonType.Primary" OnClick="@Add">
+                    <Icon Type="@IconType.Outline.Plus" Class="pe-1"/>Добавить
+                </Button>
+            }
+            
+            <Button Type="@ButtonType.Dashed" OnClick="@OnArchived">
+                @if (_showActive)
+                {
+                    <Icon Type="@IconType.Outline.FileZip" Class="pe-1"/>
+                    <span>К архиву</span>
+                }
+                else
+                {
+                    <Icon Type="@IconType.Outline.File" Class="pe-1"/>
+                    <span>К рабочим</span>
+                }
+            </Button>
+        </ButtonGroup>
+    </div>
+    
+    <div class="h-100 flex-grow-1 overflow-auto">
+        <ClientTableComponent 
+            Data="@Data"
+            Open="@Open"/>
+    </div>
+</div>

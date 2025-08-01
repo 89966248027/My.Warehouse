@@ -15,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AdditionalFiles Include="Pages\Clients\ClientAddEditComponent.razor" />
+    <AdditionalFiles Include="Pages\Clients\ClientComponent.razor" />
+    <AdditionalFiles Include="Pages\Clients\ClientTableComponent.razor" />
     <AdditionalFiles Include="Pages\MeasurementUnits\MeasurementUnitAddEditComponent.razor" />
     <AdditionalFiles Include="Pages\MeasurementUnits\MeasurementUnitComponent.razor" />
     <AdditionalFiles Include="Pages\MeasurementUnits\MeasurementUnitTableComponent.razor" />
