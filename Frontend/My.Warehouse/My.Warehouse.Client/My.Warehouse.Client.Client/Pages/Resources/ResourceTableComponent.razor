@@ -1,0 +1,25 @@
+@using AntDesign.TableModels
+@using My.Warehouse.Client.Client.Models.Resources
+
+<div>
+    <Table TItem="ResourceData" DataSource="@Data" OnRowClick="@OnOpen" HidePagination>
+        <Column @bind-Field="@context.Name">
+            <a>@context.Name</a>
+        </Column>
+    </Table>
+</div>
+
+@code {
+
+    [Parameter]
+    public required IEnumerable<ResourceData> Data { get; set; }
+
+    [Parameter]
+    public EventCallback<Guid?> Open { get; set; } = new EventCallback<Guid?>();
+
+    private async Task OnOpen(RowData<ResourceData> row)
+    {
+        await Open.InvokeAsync(row.Data.Id);
+    }
+
+}

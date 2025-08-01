@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "My.Warehouse.Dal", "My.Ware
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "My.Warehouse.Dal.Enums", "My.Warehouse.Dal.Enums\My.Warehouse.Dal.Enums.csproj", "{38AED635-87D7-4DFD-9833-6280BF0C4127}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "My.Warehouse.Dictionaries", "My.Warehouse.Dictionaries\My.Warehouse.Dictionaries.csproj", "{F12D9F11-E0EC-462D-B778-BCF98C5326D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "My.Warehouse.Dictionaries.Abstraction", "My.Warehouse.Dictionaries.Abstraction\My.Warehouse.Dictionaries.Abstraction.csproj", "{890FC61F-E8F0-41D1-BECD-80E5CD9840D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{38AED635-87D7-4DFD-9833-6280BF0C4127}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38AED635-87D7-4DFD-9833-6280BF0C4127}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38AED635-87D7-4DFD-9833-6280BF0C4127}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F12D9F11-E0EC-462D-B778-BCF98C5326D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F12D9F11-E0EC-462D-B778-BCF98C5326D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F12D9F11-E0EC-462D-B778-BCF98C5326D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F12D9F11-E0EC-462D-B778-BCF98C5326D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{890FC61F-E8F0-41D1-BECD-80E5CD9840D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{890FC61F-E8F0-41D1-BECD-80E5CD9840D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{890FC61F-E8F0-41D1-BECD-80E5CD9840D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{890FC61F-E8F0-41D1-BECD-80E5CD9840D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

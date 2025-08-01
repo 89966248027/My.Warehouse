@@ -1,4 +1,4 @@
-namespace My.Warehouse.Dal.Enums;
+namespace My.Warehouse.Client.Client.Enums;
 
 public enum CommonStatus
 {

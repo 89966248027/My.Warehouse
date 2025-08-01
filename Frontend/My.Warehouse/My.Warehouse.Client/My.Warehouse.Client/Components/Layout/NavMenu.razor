@@ -1,6 +1,6 @@
 ﻿<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">My.Warehouse.Client</a>
+        <a class="navbar-brand" href="/balance">Управление складом</a>
     </div>
 </div>
 
@@ -9,21 +9,23 @@
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
     <nav class="nav flex-column">
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
+            <h4 style="color: white">Склад</h4>
+
+            <NavLink class="nav-link" href="balance" Match="NavLinkMatch.All">Баланс</NavLink>
+
+            <NavLink class="nav-link" href="arrivals">Поступления</NavLink>
+
+            <NavLink class="nav-link" href="shipments">Отгрузки</NavLink>
         </div>
 
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
+            <h4 style="color: white">Справочники</h4>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
+            <NavLink class="nav-link" href="clients">Клиенты</NavLink>
+
+            <NavLink class="nav-link" href="measurement-units">Единицы измерения</NavLink>
+            
+            <NavLink class="nav-link" href="resources">Ресурсы</NavLink>
         </div>
     </nav>
 </div>

@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\My.Warehouse.Dal\My.Warehouse.Dal.csproj" />
+    <ProjectReference Include="..\My.Warehouse.Dictionaries\My.Warehouse.Dictionaries.csproj" />
   </ItemGroup>
 
 </Project>

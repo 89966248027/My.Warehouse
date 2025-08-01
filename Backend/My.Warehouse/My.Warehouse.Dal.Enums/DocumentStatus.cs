@@ -10,5 +10,5 @@ public enum DocumentStatus
     /// <summary>
     /// Удален
     /// </summary>
-    Deleted = 1,
+    Deleted = 2,
 }

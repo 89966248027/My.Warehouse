@@ -30,6 +30,18 @@ public sealed class ApplicationDbContext : DbContext
     {
         base.OnModelCreating(builder);
 
+        builder.Entity<BalanceEntity>().HasOne(x => x.Resource).WithMany(x => x.Balances);
+
+        builder
+            .Entity<ArrivalResourceEntity>()
+            .HasOne(x => x.Resource)
+            .WithMany(x => x.ArrivalResources);
+
+        builder
+            .Entity<ShipmentResourceEntity>()
+            .HasOne(x => x.Resource)
+            .WithMany(x => x.ShipmentResources);
+
         builder
             .Entity<ArrivalDocumentEntity>()
             .HasMany(x => x.ArrivalResources)
