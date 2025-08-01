@@ -12,6 +12,8 @@ public static class DiExtensions
     {
         return services
             .AddScoped<IResourceRepository, ResourceRepository>()
-            .AddScoped<IResourceService, ResourceService>();
+            .AddScoped<IResourceService, ResourceService>()
+            .AddScoped<IMeasurementUnitRepository, MeasurementUnitRepository>()
+            .AddScoped<IMeasurementUnitService, MeasurementUnitService>();
     }
 }

@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using My.Warehouse.Dal.Entities.Documents.Arrival;
+using My.Warehouse.Dal.Entities.Documents.Shipment;
 using My.Warehouse.Dal.Enums;
 
 namespace My.Warehouse.Dal.Entities.Dictionaries;
@@ -14,4 +16,10 @@ public sealed class MeasurementUnitEntity
     public string Name { get; set; }
 
     public CommonStatus Status { get; set; }
+
+    public List<BalanceEntity> Balances { get; set; }
+
+    public List<ArrivalResourceEntity> ArrivalResources { get; set; }
+
+    public List<ShipmentResourceEntity> ShipmentResources { get; set; }
 }

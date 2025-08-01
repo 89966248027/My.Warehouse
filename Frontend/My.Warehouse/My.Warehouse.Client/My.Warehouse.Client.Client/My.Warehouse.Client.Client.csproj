@@ -14,4 +14,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AdditionalFiles Include="Pages\MeasurementUnits\MeasurementUnitAddEditComponent.razor" />
+    <AdditionalFiles Include="Pages\MeasurementUnits\MeasurementUnitComponent.razor" />
+    <AdditionalFiles Include="Pages\MeasurementUnits\MeasurementUnitTableComponent.razor" />
+  </ItemGroup>
+
 </Project>
