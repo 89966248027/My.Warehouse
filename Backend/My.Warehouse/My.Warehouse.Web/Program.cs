@@ -1,6 +1,10 @@
+using My.Warehouse.Web.Config;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var frontendSettingsConfig = new FrontendSettingsConfig();
+builder.Configuration.GetSection("FrontendSettings").Bind(frontendSettingsConfig);
 
 builder.Services.AddControllers();
 
@@ -11,7 +15,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("https://localhost:7250").AllowAnyMethod().AllowAnyHeader();
+        policy.WithOrigins(frontendSettingsConfig.HostName).AllowAnyMethod().AllowAnyHeader();
     });
 });
 
