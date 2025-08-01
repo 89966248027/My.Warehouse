@@ -1,0 +1,5 @@
+dotnet ef migrations add -s My.Warehouse.Web -p My.Warehouse.Dal -c ApplicationDbContext -o Migrations/Application InitialCreate
+
+dotnet ef database update -p My.Warehouse.Web -c ApplicationDbContext
+
+dotnet ef migrations remove -s My.Warehouse.Web -p My.Warehouse.Dal -c ApplicationDbContext
