@@ -1,0 +1,22 @@
+@using My.Warehouse.Client.Client.Models.Balance
+
+<div>
+    <Table TItem="BalanceData" DataSource="@Data" HidePagination>
+        <Column @bind-Field="@context.ResourceName">
+            <a>@context.ResourceName</a>
+        </Column>
+        <Column @bind-Field="@context.MeasurementUnitName">
+            <a>@context.MeasurementUnitName</a>
+        </Column>
+        <Column @bind-Field="@context.Amount">
+            <a>@context.Amount</a>
+        </Column>
+    </Table>
+</div>
+
+@code {
+
+    [Parameter]
+    public required IEnumerable<BalanceData> Data { get; set; }
+
+}

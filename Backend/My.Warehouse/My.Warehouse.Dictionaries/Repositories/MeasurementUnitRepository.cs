@@ -86,4 +86,19 @@ internal sealed class MeasurementUnitRepository : IMeasurementUnitRepository
 
         return entity == null;
     }
+
+    public async Task<IEnumerable<MeasurementUnitDictionaryItem>> GetDictionaryItems()
+    {
+        return await _dbContext
+            .MeasurementUnit.AsNoTracking()
+            .OrderBy(x => x.Name)
+            .Where(x => x.Status != CommonStatus.Deleted)
+            .Select(x => new MeasurementUnitDictionaryItem()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                IsDisable = x.Status == CommonStatus.Archived,
+            })
+            .ToArrayAsync();
+    }
 }

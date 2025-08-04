@@ -58,3 +58,122 @@ h1:focus {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
 }
+
+.am-filters {
+    display: flex;
+    margin-top: -8px;
+
+    @media screen and (max-width: 768px) {
+        flex-wrap: wrap;
+        margin-top: -4px;
+    }
+}
+
+.am-filters__controls {
+    flex-grow: 1;
+}
+
+.am-filters__actions {
+    flex-grow: 0;
+}
+
+.am-form-control_middle {
+    width: 320px;
+}
+
+.am-form-control_extra-large-plus {
+    max-width: 100%;
+    width: 520px;
+
+    @media screen and (max-width: 576px) {
+        width: 320px;
+    }
+}
+
+.am-form-control_extra-large {
+    max-width: 100%;
+    width: 480px;
+
+    @media screen and (max-width: 576px) {
+        width: 320px;
+    }
+}
+
+.am-form-control_large-plus {
+    max-width: 100%;
+    width: 440px;
+    
+    @media screen and (max-width: 576px) {
+        width: 320px;
+    }
+}
+
+.am-form-control_large {
+    max-width: 100%;
+    width: 400px;
+
+    @media screen and (max-width: 576px) {
+        width: 320px;
+    }
+}
+
+.am-form-control_medium-plus {
+    max-width: 100%;
+    width: 360px;
+}
+
+.am-form-control_medium {
+    max-width: 100%;
+    width: 320px;
+}
+
+.am-form-control_small-plus {
+    max-width: 100%;
+    width: 280px;
+}
+
+.am-form-control_small {
+    max-width: 100%;
+    width: 240px;
+}
+
+.am-form-control_extra-small-plus {
+    max-width: 100%;
+    width: 200px;
+}
+
+.am-form-control_extra-small {
+    max-width: 100%;
+    width: 160px;
+}
+
+.am-form-control_extra-small-minus {
+    max-width: 100%;
+    width: 120px;
+}
+
+
+
+.am-form-item_filters {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    
+    @media screen and (max-width: 768px) {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    @media screen and (max-width: 575px) {
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        
+        .ant-form-item-label {
+            flex-basis: auto !important;
+            padding: 0 !important;
+        }
+    }
+}
+
+.am-form-item_full-width {
+    width: 100%;
+}

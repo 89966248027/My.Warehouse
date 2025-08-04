@@ -66,4 +66,9 @@ internal sealed class MeasurementUnitService : IMeasurementUnitService
     {
         return await _repository.CheckUnique(model);
     }
+
+    public async Task<IEnumerable<MeasurementUnitDictionaryItem>> GetDictionaryItems()
+    {
+        return await _repository.GetDictionaryItems();
+    }
 }

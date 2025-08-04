@@ -84,4 +84,19 @@ internal sealed class ResourceRepository : IResourceRepository
 
         return entity == null;
     }
+
+    public async Task<IEnumerable<ResourceDictionaryItem>> GetDictionaryItems()
+    {
+        return await _dbContext
+            .Resource.AsNoTracking()
+            .OrderBy(x => x.Name)
+            .Where(x => x.Status != CommonStatus.Deleted)
+            .Select(x => new ResourceDictionaryItem()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                IsDisable = x.Status == CommonStatus.Archived,
+            })
+            .ToArrayAsync();
+    }
 }

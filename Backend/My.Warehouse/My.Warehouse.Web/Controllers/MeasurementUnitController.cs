@@ -15,6 +15,12 @@ public class MeasurementUnitController : ControllerBase
         _service = service;
     }
 
+    [HttpGet]
+    public async Task<IEnumerable<MeasurementUnitDictionaryItem>> GetDictionaryItems()
+    {
+        return await _service.GetDictionaryItems();
+    }
+
     [HttpGet("active")]
     public async Task<IEnumerable<MeasurementUnitData>> GetActive()
     {

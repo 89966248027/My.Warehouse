@@ -15,6 +15,12 @@ public class ResourceController : ControllerBase
         _service = service;
     }
 
+    [HttpGet]
+    public async Task<IEnumerable<ResourceDictionaryItem>> GetDictionaryItems()
+    {
+        return await _service.GetDictionaryItems();
+    }
+
     [HttpGet("active")]
     public async Task<IEnumerable<ResourceData>> GetActive()
     {

@@ -66,4 +66,9 @@ internal sealed class ResourceService : IResourceService
     {
         return await _repository.CheckUnique(model);
     }
+
+    public async Task<IEnumerable<ResourceDictionaryItem>> GetDictionaryItems()
+    {
+        return await _repository.GetDictionaryItems();
+    }
 }

@@ -19,4 +19,6 @@ public interface IMeasurementUnitService
     Task<IEnumerable<MeasurementUnitData>> GetAllArchived();
 
     Task<bool> CheckUnique(MeasurementUnitAddEditModel model);
+
+    Task<IEnumerable<MeasurementUnitDictionaryItem>> GetDictionaryItems();
 }

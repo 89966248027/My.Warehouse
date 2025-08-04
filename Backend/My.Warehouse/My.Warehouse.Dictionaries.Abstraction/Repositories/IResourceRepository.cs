@@ -14,4 +14,6 @@ public interface IResourceRepository
     Task<IEnumerable<ResourceData>> GetAll(CommonStatus? status);
 
     Task<bool> CheckUnique(ResourceAddEditModel model);
+
+    Task<IEnumerable<ResourceDictionaryItem>> GetDictionaryItems();
 }

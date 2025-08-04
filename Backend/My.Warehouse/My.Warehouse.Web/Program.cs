@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using My.Warehouse.Dal.Contexts;
 using My.Warehouse.Dictionaries;
+using My.Warehouse.Documents;
 using My.Warehouse.Web.Config;
 using My.Warehouse.Web.StartupConfiguration;
 
@@ -22,7 +23,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     )
 );
 
-builder.Services.AddDictionaries();
+builder.Services.AddDictionaries().AddDocuments();
 
 builder.Services.AddControllers();
 

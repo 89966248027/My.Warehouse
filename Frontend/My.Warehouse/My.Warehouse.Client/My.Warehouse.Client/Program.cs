@@ -1,3 +1,4 @@
+using My.Warehouse.Client.Client.Services;
 using My.Warehouse.Client.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddScoped(sp => new HttpClient
 {
     BaseAddress = new Uri("https://localhost:45200"),
 });
+
+builder.Services.AddScoped<DictionariesService>();
 
 builder.Services.AddAntDesign();
 

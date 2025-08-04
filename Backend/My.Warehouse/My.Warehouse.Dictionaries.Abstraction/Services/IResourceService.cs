@@ -19,4 +19,6 @@ public interface IResourceService
     Task<IEnumerable<ResourceData>> GetAllArchived();
 
     Task<bool> CheckUnique(ResourceAddEditModel model);
+
+    Task<IEnumerable<ResourceDictionaryItem>> GetDictionaryItems();
 }
