@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\My.Warehouse.Dal.Enums\My.Warehouse.Dal.Enums.csproj" />
+    </ItemGroup>
+
 </Project>

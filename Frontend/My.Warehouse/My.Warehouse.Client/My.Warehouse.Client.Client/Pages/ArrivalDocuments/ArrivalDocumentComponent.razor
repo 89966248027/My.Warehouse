@@ -1,0 +1,98 @@
+@page "/arrivals"
+@using System.Globalization
+@using My.Warehouse.Client.Client.Models.MeasurementUnits
+@using My.Warehouse.Client.Client.Models.Resources
+@using My.Warehouse.Client.Client.Services
+@inject HttpClient Http;
+@inject DictionariesService DictionariesService
+@inject NavigationManager Navigation
+@rendermode InteractiveWebAssembly
+
+<div class="h-100 d-flex flex-column">
+    <div class="flex-grow-0">
+        <h2>Поступления</h2>
+        <hr class="mb-4" />
+    </div>
+
+    <div class="flex-grow-0 pb-3 d-flex flex-row justify-content-between align-items-center">
+
+        <div class="w-100 d-flex flex-row flex-wrap">
+            <div class="am-form-item am-form-item_filters mb-0 pe-2">
+                <label>Период</label>
+                <div class="am-form-control am-form-control_middle">
+                    <RangePicker TValue="DateOnly?[]" @bind-Value="DateRange" />
+                </div>
+            </div>
+            
+            <div class="am-form-item am-form-item_filters mb-0 pe-2">
+                <label>Номер</label>
+                <div class="am-form-control am-form-control_small">
+                    <AntDesign.InputNumber
+                        Class="w-100"
+                        TValue="int?"
+                        Placeholder="Не введено"
+                        Min="0"
+                        @bind-Value="@Number"
+                        CultureInfo="@CultureInfo.InvariantCulture">
+                    </AntDesign.InputNumber>
+                </div>
+            </div>
+
+            <div class="am-form-item am-form-item_filters mb-0 pe-2">
+                <label>Ресурс</label>
+                <div class="am-form-control am-form-control_middle">
+                    <Select
+                        Class="w-100"
+                        Mode="SelectMode.Multiple"
+                        @bind-Values="@ResourceIds"
+                        TItemValue="Guid"
+                        TItem="ResourceDictionaryItem"
+                        AllowClear
+                        EnableSearch
+                        DataSource="@Resources"
+                        ItemValue="o => o.Id"
+                        ItemLabel="o => o.Name"
+                        DisabledName="@nameof(ResourceDictionaryItem.IsDisable)">
+                    </Select>
+                </div>
+            </div>
+
+            <div class="am-form-item am-form-item_filters mb-0 pe-2">
+                <label>Единица измерения</label>
+                <div class="am-form-control am-form-control_middle">
+                    <Select
+                        Class="w-100"
+                        Mode="SelectMode.Multiple"
+                        @bind-Values="@MeasurementUnitIds"
+                        TItemValue="Guid"
+                        TItem="MeasurementUnitDictionaryItem"
+                        AllowClear
+                        EnableSearch
+                        DataSource="@MeasurementUnits"
+                        ItemValue="o => o.Id"
+                        ItemLabel="o => o.Name"
+                        DisabledName="@nameof(MeasurementUnitDictionaryItem.IsDisable)">
+                    </Select>
+                </div>
+            </div>
+        </div>
+
+        <ButtonGroup>
+            <Button Type="@ButtonType.Primary" OnClick="@Add">
+                <Icon Type="@IconType.Outline.Plus" Class="pe-1"/>Добавить
+            </Button>
+            
+            <Button Type="@ButtonType.Dashed" OnClick="@Load">
+                <Icon Type="@IconType.Outline.Sync" Class="pe-1"/>Загрузить
+            </Button>
+        </ButtonGroup>
+    </div>
+    
+    
+    
+    <div class="h-100 flex-grow-1 overflow-auto">
+        <ArrivalDocumentTableComponent
+            Data="@Data"
+            Open="@Open"/>
+    </div>
+</div>

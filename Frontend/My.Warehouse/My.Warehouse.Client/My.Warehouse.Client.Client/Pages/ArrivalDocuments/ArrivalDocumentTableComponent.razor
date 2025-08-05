@@ -1,0 +1,43 @@
+@using AntDesign.TableModels
+@using My.Warehouse.Client.Client.Models.Arrival
+
+<div>
+    <Table TItem="ArrivalDocumentData" DataSource="@Data" OnRowClick="@OnOpen" HidePagination OnExpand="OnRowExpand">
+        <ColumnDefinitions>
+            <PropertyColumn Property="c => c.Number"/>
+            <PropertyColumn Property="c => c.DocumentDate"/>
+        </ColumnDefinitions>
+        <ExpandTemplate Context="rowData">
+            <Table TItem="ArrivalResourceData" DataSource="@rowData.Data.Resources" HidePagination>
+                <PropertyColumn Property="c => c.ResourceName"/>
+                <PropertyColumn Property="c => c.MeasurementUnitName"/>
+                <PropertyColumn Property="c => c.Amount"/>
+            </Table>
+        </ExpandTemplate>
+    </Table>
+</div>
+
+@code {
+
+    [Parameter]
+    public required IEnumerable<ArrivalDocumentData> Data { get; set; }
+
+    [Parameter]
+    public EventCallback<Guid?> Open { get; set; } = new EventCallback<Guid?>();
+
+    private async Task OnOpen(RowData<ArrivalDocumentData> row)
+    {
+        await Open.InvokeAsync(row.Data.Id);
+    }
+    
+    void OnRowExpand(RowData<ArrivalDocumentData> rowData)
+    {
+        if (!rowData.Data.Resources.Any())
+        {
+            return;
+        }
+
+        StateHasChanged();
+    }
+
+}

@@ -25,4 +25,18 @@ public class BalanceController : ControllerBase
     {
         return await _service.GetAll(resourceIds, measurementUnitIds);
     }
+
+    [HttpGet("funds-left")]
+    public async Task<Dictionary<Guid, Dictionary<Guid, decimal>>> GetResourceFundsLeft()
+    {
+        return await _service.GetResourceFundsLeft();
+    }
+
+    [HttpGet("funds-left/without-document")]
+    public async Task<
+        Dictionary<Guid, Dictionary<Guid, decimal>>
+    > GetResourceFundsLeftWithoutDocument([FromQuery] Guid? documentId)
+    {
+        return await _service.GetResourceFundsLeftWithoutDocument(documentId);
+    }
 }

@@ -12,6 +12,8 @@ public static class DiExtensions
     {
         return services
             .AddScoped<IBalanceRepository, BalanceRepository>()
-            .AddScoped<IBalanceService, BalanceService>();
+            .AddScoped<IBalanceService, BalanceService>()
+            .AddScoped<IArrivalDocumentRepository, ArrivalDocumentRepository>()
+            .AddScoped<IArrivalDocumentService, ArrivalDocumentService>();
     }
 }

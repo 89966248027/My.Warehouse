@@ -23,4 +23,10 @@
     <AdditionalFiles Include="Pages\MeasurementUnits\MeasurementUnitTableComponent.razor" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Arrival\ClientAddEditComponent.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Arrival\ClientComponent.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Arrival\ClientTableComponent.razor" />
+  </ItemGroup>
+
 </Project>

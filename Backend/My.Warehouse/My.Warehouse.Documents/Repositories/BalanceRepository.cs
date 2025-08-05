@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using My.Warehouse.Dal.Contexts;
+using My.Warehouse.Dal.Entities.Dictionaries;
+using My.Warehouse.Dal.Entities.Documents.Arrival;
+using My.Warehouse.Dal.Entities.Documents.Shipment;
+using My.Warehouse.Dal.Enums;
 using My.Warehouse.Documents.Abstraction.Models.Balance;
 using My.Warehouse.Documents.Abstraction.Repositories;
 
@@ -40,5 +44,111 @@ internal sealed class BalanceRepository : IBalanceRepository
                 Amount = x.Amount,
             })
             .ToArrayAsync();
+    }
+
+    public async Task Add(BalanceAddEditModel balance)
+    {
+        var entity = new BalanceEntity()
+        {
+            ResourceId = balance.ResourceId,
+            MeasurementUnitId = balance.MeasurementUnitId,
+            Amount = balance.Amount,
+        };
+
+        _db.Balance.Add(entity);
+        await _db.SaveChangesAsync();
+    }
+
+    public async Task Update(BalanceAddEditModel balance)
+    {
+        BalanceEntity? entity = await _db.Balance.FirstAsync(x =>
+            x.ResourceId == balance.ResourceId && x.MeasurementUnitId == balance.MeasurementUnitId
+        );
+
+        entity.Amount = balance.Amount;
+
+        _db.Balance.Update(entity);
+        await _db.SaveChangesAsync();
+    }
+
+    public async Task<Dictionary<Guid, Dictionary<Guid, decimal>>> GetResourceFundsLeft()
+    {
+        List<BalanceEntity> balance = await _db
+            .Balance.Include(x => x.Resource)
+            .Include(x => x.MeasurementUnit)
+            .AsNoTracking()
+            .ToListAsync();
+
+        return balance
+            .GroupBy(x => x.ResourceId)
+            .ToDictionary(x => x.Key, x => x.ToDictionary(y => y.MeasurementUnitId, y => y.Amount));
+    }
+
+    public async Task<IEnumerable<BalanceFundsLeft>> GetDocumentAmounts(Guid documentId)
+    {
+        List<ArrivalResourceEntity> arrivalResources = await _db
+            .ArrivalResource.AsNoTracking()
+            .Where(x => x.ArrivalDocumentId == documentId)
+            .ToListAsync();
+
+        if (arrivalResources.Any())
+        {
+            return arrivalResources
+                .Select(x => new BalanceFundsLeft()
+                {
+                    ResourceId = x.ResourceId,
+                    MeasurementUnitId = x.MeasurementUnitId,
+                    Amount = x.Amount,
+                    DocumentType = DocumentType.Arrival,
+                })
+                .ToArray();
+        }
+
+        List<ShipmentResourceEntity> shipmentResources = await _db
+            .ShipmentResource.AsNoTracking()
+            .Where(x => x.ShipmentDocumentId == documentId)
+            .ToListAsync();
+
+        if (shipmentResources.Any())
+        {
+            return shipmentResources
+                .Select(x => new BalanceFundsLeft()
+                {
+                    ResourceId = x.ResourceId,
+                    MeasurementUnitId = x.MeasurementUnitId,
+                    Amount = x.Amount,
+                    DocumentType = DocumentType.Shipment,
+                })
+                .ToArray();
+        }
+
+        return [];
+    }
+
+    public async Task<IEnumerable<BalanceFundsLeft>> GetDocumentAmounts()
+    {
+        IEnumerable<BalanceFundsLeft> arrivalResources = await _db
+            .ArrivalResource.AsNoTracking()
+            .Select(x => new BalanceFundsLeft()
+            {
+                ResourceId = x.ResourceId,
+                MeasurementUnitId = x.MeasurementUnitId,
+                Amount = x.Amount,
+                DocumentType = DocumentType.Arrival,
+            })
+            .ToArrayAsync();
+
+        IEnumerable<BalanceFundsLeft> shipmentResources = await _db
+            .ShipmentResource.AsNoTracking()
+            .Select(x => new BalanceFundsLeft()
+            {
+                ResourceId = x.ResourceId,
+                MeasurementUnitId = x.MeasurementUnitId,
+                Amount = x.Amount,
+                DocumentType = DocumentType.Shipment,
+            })
+            .ToListAsync();
+
+        return arrivalResources.Concat(shipmentResources);
     }
 }

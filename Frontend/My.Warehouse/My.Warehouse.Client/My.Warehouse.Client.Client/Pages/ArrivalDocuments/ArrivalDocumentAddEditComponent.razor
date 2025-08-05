@@ -1,0 +1,136 @@
+@page "/arrival/{id:guid?}"
+@using System.Globalization
+@using My.Warehouse.Client.Client.Models.MeasurementUnits
+@using My.Warehouse.Client.Client.Models.Resources
+@using My.Warehouse.Client.Client.Services
+@inject HttpClient Http;
+@inject DictionariesService DictionariesService
+@inject NavigationManager Navigation
+@rendermode InteractiveWebAssembly
+
+<div class="transparent p-2 mb-4 bg-white border-bottom">
+    <h3 class="mb-0">@(id == null ? "Создание" : "Редактирование") поступления</h3>
+</div>
+
+<div class="mb-2">
+    <EditForm EditContext="@editContext" FormName="arrival">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group row mb-3">
+            <label class="col-md-2 col-form-label">Номер</label>
+            <div class="col-md-10">
+                <AntDesign.InputNumber
+                    Class="w-100"
+                    TValue="int?"
+                    Placeholder="Не введено"
+                    Min="0"
+                    @bind-Value="@Model.Number"
+                    CultureInfo="@CultureInfo.InvariantCulture">
+                </AntDesign.InputNumber>
+                <ValidationMessage For="@(() => Model.Number)" />
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label class="col-md-2 col-form-label">Дата</label>
+            <div class="col-md-10">
+                <DatePicker TValue="DateOnly"
+                            Picker="DatePickerType.Date"
+                            Format="dd.MM.yyyy"
+                            Placeholder="@("Дата")"
+                            @bind-Value="@Model.DocumentDate"
+                            AllowClear="false"></DatePicker>
+                <ValidationMessage For="@(() => Model.DocumentDate)" />
+            </div>
+        </div>
+        
+        <Divider></Divider>
+        
+        <div class="w-100 pb-2">
+            @foreach (var formItem in Model.Resources.Select((item, index) => new { item, index }))
+            {
+                <Card Class="document-card document-card_item-labels-text-center document-card_disabled-form-controls-like-text mb-2 pb-2">
+                    <Button Class="document-card__remove-button"
+                            Type="ButtonType.Text"
+                            Danger
+                            OnClick="@(() => RemoveItem(formItem.index))">
+                        <Icon Type="@IconType.Outline.Close"/>
+                    </Button>
+
+                    <div class="document-card__items">
+                        <div class="document-card__item document-card__item_medium p-1">
+                            <label>Ресурс</label>
+                            <div class="col-md-10">
+                                <Select
+                                    Class="w-100"
+                                    @bind-Value="@formItem.item.ResourceId"
+                                    TItemValue="Guid?"
+                                    TItem="ResourceDictionaryItem"
+                                    EnableSearch
+                                    DataSource="@Resources"
+                                    ItemValue="o => o.Id"
+                                    ItemLabel="o => o.Name"
+                                    DisabledName="@nameof(ResourceDictionaryItem.IsDisable)">
+                                </Select>
+                                <ValidationMessage For="@(() => formItem.item.ResourceId)" />
+                            </div>
+                        </div>
+
+                        <div class="document-card__item document-card__item_medium p-1">
+                            <label>Единица измерения</label>
+                            <div class="col-md-10">
+                                <Select
+                                    Class="w-100"
+                                    @bind-Value="@formItem.item.MeasurementUnitId"
+                                    TItemValue="Guid?"
+                                    TItem="MeasurementUnitDictionaryItem"
+                                    EnableSearch
+                                    DataSource="@MeasurementUnits"
+                                    ItemValue="o => o.Id"
+                                    ItemLabel="o => o.Name"
+                                    DisabledName="@nameof(MeasurementUnitDictionaryItem.IsDisable)">
+                                </Select>
+                                <ValidationMessage For="@(() => formItem.item.MeasurementUnitId)" />
+                            </div>
+                        </div>
+
+                        <div class="document-card__item document-card__item_medium p-1">
+                            <label>Количество</label>
+                            <div class="col-md-10">
+                                <AntDesign.InputNumber
+                                    Class="w-100"
+                                    TValue="decimal?"
+                                    Placeholder="Не введено"
+                                    Min="0"
+                                    @bind-Value="@formItem.item.Amount"
+                                    CultureInfo="@CultureInfo.InvariantCulture">
+                                </AntDesign.InputNumber>
+                                <ValidationMessage For="@(() => formItem.item.Amount)" />
+                            </div>
+                        </div>
+                    </div>
+                </Card>
+            }
+            
+            <div class="d-flex justify-content-between align-items-center">
+                <ButtonGroup>
+                    <Button Type="@ButtonType.Primary" OnClick="AddItem">
+                        <Icon Type="@IconType.Outline.Plus"/>Добавить
+                    </Button>
+                </ButtonGroup>
+            </div>
+        </div>
+        
+        <div>
+            <Button Type="@ButtonType.Primary" Class="py-1" OnClick="@Save">Сохранить</Button>
+            
+            @if (id != null)
+            {
+                <Button Type="@ButtonType.Default" Danger Class="py-1" OnClick="@Delete">Удалить</Button>
+            }
+            
+            <Button Type="@ButtonType.Dashed" Class="py-1" OnClick="@Cancel">Отмена</Button>
+        </div>
+    </EditForm>
+</div>

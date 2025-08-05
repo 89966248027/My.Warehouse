@@ -177,3 +177,108 @@ h1:focus {
 .am-form-item_full-width {
     width: 100%;
 }
+
+.document-card {
+    position: relative; }
+.document-card_item-labels-text-center .ant-form-item-label {
+    text-align: center; }
+.document-card_disabled-form-controls-like-text .document-card__item .ant-input[disabled] {
+    cursor: text;
+    background-color: inherit;
+    border: none;
+    color: inherit;
+    text-align: center; }
+.document-card_disabled-form-controls-like-text .document-card__item .ant-input-number-disabled {
+    cursor: text;
+    background-color: inherit;
+    border: none;
+    color: inherit; }
+.document-card_disabled-form-controls-like-text .document-card__item .ant-input-number-disabled .ant-input-number-input {
+    cursor: text;
+    text-align: center; }
+.document-card_disabled-form-controls-like-text .document-card__item .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    cursor: text;
+    background-color: inherit;
+    border: none;
+    color: inherit; }
+.document-card_disabled-form-controls-like-text .document-card__item .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector input {
+    cursor: text; }
+.document-card_disabled-form-controls-like-text .document-card__item .ant-select-disabled .ant-select-arrow {
+    display: none; }
+.document-card_disabled-form-controls-like-text .document-card__item .ant-select-disabled.ant-select-single .ant-select-selector .ant-select-selection-item {
+    text-align: center; }
+.document-card__remove-button {
+    position: absolute;
+    top: 0;
+    right: 0; }
+.document-card__items {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-wrap: wrap; }
+.document-card__item_size_100 {
+    max-width: 100%;
+    width: 100%; }
+.document-card__item_size_70 {
+    max-width: 100%;
+    width: 70%; }
+@media screen and (max-width: 576px) {
+    .document-card__item_size_70 {
+        width: 100%; } }
+.document-card__item_size_50 {
+    max-width: 100%;
+    width: 50%; }
+@media screen and (max-width: 576px) {
+    .document-card__item_size_50 {
+        width: 100%; } }
+.document-card__item_size_30 {
+    max-width: 100%;
+    width: 30%; }
+@media screen and (max-width: 576px) {
+    .document-card__item_size_30 {
+        width: 100%; } }
+.document-card__item_extra-large-plus {
+    max-width: 100%;
+    width: 520px; }
+@media screen and (max-width: 576px) {
+    .document-card__item_extra-large-plus {
+        width: 320px; } }
+.document-card__item_extra-large {
+    max-width: 100%;
+    width: 480px; }
+@media screen and (max-width: 576px) {
+    .document-card__item_extra-large {
+        width: 320px; } }
+.document-card__item_large-plus {
+    max-width: 100%;
+    width: 440px; }
+@media screen and (max-width: 576px) {
+    .document-card__item_large-plus {
+        width: 320px; } }
+.document-card__item_large {
+    max-width: 100%;
+    width: 400px; }
+@media screen and (max-width: 576px) {
+    .document-card__item_large {
+        width: 320px; } }
+.document-card__item_medium-plus {
+    max-width: 100%;
+    width: 360px; }
+.document-card__item_medium {
+    max-width: 100%;
+    width: 320px; }
+.document-card__item_small-plus {
+    max-width: 100%;
+    width: 280px; }
+.document-card__item_small {
+    max-width: 100%;
+    width: 240px; }
+.document-card__item_extra-small-plus {
+    max-width: 100%;
+    width: 200px; }
+.document-card__item_extra-small {
+    max-width: 100%;
+    width: 160px; }
+.document-card__item_extra-small-minus {
+    max-width: 100%;
+    width: 120px; }

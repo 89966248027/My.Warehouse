@@ -15,6 +15,7 @@ public sealed class DictionariesService
 
     private const string ApiResource = "api/dict/resource";
     private const string ApiMeasurementUnit = "api/dict/measurement-unit";
+    private const string ApiBalance = "api/doc/balance";
 
     public async Task<IEnumerable<ResourceDictionaryItem>> GetResources()
     {
@@ -27,6 +28,22 @@ public sealed class DictionariesService
     {
         return await _httpClient.GetFromJsonAsync<IEnumerable<MeasurementUnitDictionaryItem>>(
                 $"{ApiMeasurementUnit}"
+            ) ?? [];
+    }
+
+    public async Task<Dictionary<Guid, Dictionary<Guid, decimal>>> GetResourceFundsLeft()
+    {
+        return await _httpClient.GetFromJsonAsync<Dictionary<Guid, Dictionary<Guid, decimal>>>(
+                $"{ApiBalance}/funds-left"
+            ) ?? [];
+    }
+
+    public async Task<
+        Dictionary<Guid, Dictionary<Guid, decimal>>
+    > GetResourceFundsLeftWithoutDocument(Guid? documentId)
+    {
+        return await _httpClient.GetFromJsonAsync<Dictionary<Guid, Dictionary<Guid, decimal>>>(
+                $"{ApiBalance}/funds-left/without-document?documentId={documentId}"
             ) ?? [];
     }
 }

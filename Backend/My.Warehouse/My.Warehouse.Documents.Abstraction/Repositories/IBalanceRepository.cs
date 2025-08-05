@@ -8,4 +8,14 @@ public interface IBalanceRepository
         IEnumerable<Guid> resourceIds,
         IEnumerable<Guid> measurementUnitIds
     );
+
+    Task Add(BalanceAddEditModel balance);
+
+    Task Update(BalanceAddEditModel balance);
+
+    Task<Dictionary<Guid, Dictionary<Guid, decimal>>> GetResourceFundsLeft();
+
+    Task<IEnumerable<BalanceFundsLeft>> GetDocumentAmounts(Guid documentId);
+
+    Task<IEnumerable<BalanceFundsLeft>> GetDocumentAmounts();
 }
