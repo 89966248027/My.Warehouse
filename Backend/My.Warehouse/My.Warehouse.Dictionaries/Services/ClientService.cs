@@ -66,4 +66,9 @@ internal sealed class ClientService : IClientService
     {
         return await _repository.CheckUnique(model);
     }
+
+    public async Task<IEnumerable<ClientDictionaryItem>> GetDictionaryItems()
+    {
+        return await _repository.GetDictionaryItems();
+    }
 }

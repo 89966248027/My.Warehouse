@@ -106,6 +106,8 @@ internal sealed class BalanceRepository : IBalanceRepository
 
         List<ShipmentResourceEntity> shipmentResources = await _db
             .ShipmentResource.AsNoTracking()
+            .Include(x => x.ShipmentDocument)
+            .Where(x => x.ShipmentDocument.Status == DocumentStatus.Signed)
             .Where(x => x.ShipmentDocumentId == documentId)
             .ToListAsync();
 
@@ -140,6 +142,8 @@ internal sealed class BalanceRepository : IBalanceRepository
 
         IEnumerable<BalanceFundsLeft> shipmentResources = await _db
             .ShipmentResource.AsNoTracking()
+            .Include(x => x.ShipmentDocument)
+            .Where(x => x.ShipmentDocument.Status == DocumentStatus.Signed)
             .Select(x => new BalanceFundsLeft()
             {
                 ResourceId = x.ResourceId,

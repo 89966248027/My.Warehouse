@@ -14,4 +14,6 @@ public interface IClientRepository
     Task<IEnumerable<ClientData>> GetAll(CommonStatus? status);
 
     Task<bool> CheckUnique(ClientAddEditModel model);
+
+    Task<IEnumerable<ClientDictionaryItem>> GetDictionaryItems();
 }

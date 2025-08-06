@@ -11,4 +11,9 @@ public enum DocumentStatus
     /// Удален
     /// </summary>
     Deleted = 2,
+
+    /// <summary>
+    /// Подписан
+    /// </summary>
+    Signed = 3,
 }

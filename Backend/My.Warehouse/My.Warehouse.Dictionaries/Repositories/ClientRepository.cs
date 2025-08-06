@@ -87,4 +87,19 @@ internal sealed class ClientRepository : IClientRepository
 
         return entity == null;
     }
+
+    public async Task<IEnumerable<ClientDictionaryItem>> GetDictionaryItems()
+    {
+        return await _dbContext
+            .Client.AsNoTracking()
+            .OrderBy(x => x.Name)
+            .Where(x => x.Status != CommonStatus.Deleted)
+            .Select(x => new ClientDictionaryItem()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                IsDisable = x.Status == CommonStatus.Archived,
+            })
+            .ToArrayAsync();
+    }
 }

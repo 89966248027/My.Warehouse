@@ -15,6 +15,12 @@ public class ClientController : ControllerBase
         _service = service;
     }
 
+    [HttpGet]
+    public async Task<IEnumerable<ClientDictionaryItem>> GetDictionaryItems()
+    {
+        return await _service.GetDictionaryItems();
+    }
+
     [HttpGet("active")]
     public async Task<IEnumerable<ClientData>> GetActive()
     {

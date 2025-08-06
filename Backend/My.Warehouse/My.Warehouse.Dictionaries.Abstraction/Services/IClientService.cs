@@ -19,4 +19,6 @@ public interface IClientService
     Task<IEnumerable<ClientData>> GetAllArchived();
 
     Task<bool> CheckUnique(ClientAddEditModel model);
+
+    Task<IEnumerable<ClientDictionaryItem>> GetDictionaryItems();
 }

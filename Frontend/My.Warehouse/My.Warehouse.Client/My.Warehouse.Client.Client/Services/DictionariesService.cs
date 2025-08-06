@@ -1,4 +1,5 @@
 using System.Net.Http.Json;
+using My.Warehouse.Client.Client.Models.Clients;
 using My.Warehouse.Client.Client.Models.MeasurementUnits;
 using My.Warehouse.Client.Client.Models.Resources;
 
@@ -15,6 +16,7 @@ public sealed class DictionariesService
 
     private const string ApiResource = "api/dict/resource";
     private const string ApiMeasurementUnit = "api/dict/measurement-unit";
+    private const string ApiClient = "api/dict/client";
     private const string ApiBalance = "api/doc/balance";
 
     public async Task<IEnumerable<ResourceDictionaryItem>> GetResources()
@@ -29,6 +31,12 @@ public sealed class DictionariesService
         return await _httpClient.GetFromJsonAsync<IEnumerable<MeasurementUnitDictionaryItem>>(
                 $"{ApiMeasurementUnit}"
             ) ?? [];
+    }
+
+    public async Task<IEnumerable<ClientDictionaryItem>> GetClients()
+    {
+        return await _httpClient.GetFromJsonAsync<IEnumerable<ClientDictionaryItem>>($"{ApiClient}")
+            ?? [];
     }
 
     public async Task<Dictionary<Guid, Dictionary<Guid, decimal>>> GetResourceFundsLeft()
